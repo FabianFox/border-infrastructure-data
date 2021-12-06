@@ -15,7 +15,7 @@ rankdir = TB;
 
 node [shape = box]
 nodeA [label = 'Border\nbarrier'];
-nodeB [label = 'BCP'];
+nodeB [label = 'Border\ncheckpoint'];
 nodeC [label = 'At specific\npoints only?'];
 nodeD [label = 'Dismantling by\nagreement'];
 
