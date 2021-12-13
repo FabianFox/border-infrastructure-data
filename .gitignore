@@ -1,5 +1,8 @@
 # Ignore excel
 data/*.xlsx
+data/*.rds
+data/*.dta
+data/*.sav
 
 # History files
 .Rhistory
