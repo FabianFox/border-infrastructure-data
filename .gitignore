@@ -7,6 +7,9 @@ data/*.sav
 # Ignore figures
 figure/
 
+# Ignore .html in text folder
+text/*.html
+
 # History files
 .Rhistory
 .Rapp.history
