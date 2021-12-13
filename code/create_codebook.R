@@ -152,3 +152,8 @@ metadata(bid.df)$url <- ""
 metadata(bid.df)$datePublished <- "2022-01-01"
 metadata(bid.df)$temporalCoverage <- "April 2018 and October 2019" 
 metadata(bid.df)$spatialCoverage <- "Global" 
+
+# Export
+### ------------------------------------------------------------------------ ###
+list(".rds", ".dta", ".sav") %>%
+  walk(~export(bid.df, file = str_c("./data/border-infrastructure-data", .x)))
