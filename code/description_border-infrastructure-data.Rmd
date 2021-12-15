@@ -14,7 +14,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r pkg_load, include = FALSE}
 if(!require("xfun")) install.packages("xfun")
-pkg_attach2("DiagrammeR", "grid", "tiff", "here")
+pkg_attach2("tidyverse", "rio", "DiagrammeR", "grid", "tiff", "here", "kableExtra",
+            "sjlabelled")
 ```
 
 ### Introduction
@@ -22,31 +23,31 @@ pkg_attach2("DiagrammeR", "grid", "tiff", "here")
 This codebook provides a brief overview of the *Border Infrastructure Data*. The data
 was collected as part of the research project [The Borders of the World: Processes
 of De- and Rebordering in a Global Perspective](https://www.sfb1265.de/en/subprojects/the-borders-of-the-world-processes-of-de-and-rebordering-in-a-global-perspective/) (SFB 1265, C01, PI: Prof. Dr. Steffen Mau) which was funded
-by the German Research Foundation, project number 290045248 - SFB 1265). For a 
-more details please consult the following article: 
+by the German Research Foundation, project number 290045248 - SFB 1265). For more 
+details on the dataset, please consult the following article: 
 
-- Gülzau, F., & Mau, S. (2021). Walls, Barriers, Checkpoints, Landmarks, and "No-Man's-Land." 
-A Quantitative Typology of Border Control Infrastructure. *Historical Social Research, 46*(3), 23-48. doi:10.12759/hsr.46.2021.3.23-48
+- [Gülzau, F., & Mau, S. (2021a). Walls, Barriers, Checkpoints, Landmarks, and "No-Man's-Land." 
+A Quantitative Typology of Border Control Infrastructure. *Historical Social Research, 46*(3), 23-48. doi:10.12759/hsr.46.2021.3.23-48](https://www.sowi.hu-berlin.de/de/lehrbereiche/makro/News/hsr_46_2021_3_guelzau_mau_border-control-infrastructure.pdf)
 
 The project developed a heuristic that measures the "physicality of borders" (Hassner 
 & Wittenberg 2015: 162). We go beyond binary measures of border fortifications 
 by classifying border architecture into five categories - from relatively to 
 completely closed - that we describe respectively as "no-man's-land" borders, 
-landmark borders, checkpoint borders, barrier borders, and fortified borders. See
-Figure 1 below: 
+landmark borders, checkpoint borders, barrier borders, and fortified borders. 
+Figure 1 provides a visual illustration of the categories.
 
 ```{r typology_fig, eval = TRUE, echo = FALSE, fig.cap = "*Figure 1. Typology of border infrastructures*"}
-grid::grid.raster(tiff::readTIFF(here::here("figure", "Fig1 - Typology_logic.tif")))
+grid.raster(readTIFF(here("figure", "Figure 1 - Typology of border infrastructures.tif")))
 ```
 
 ### Approach
 
-###### *from Gülzau & Mau (2021: 30-31)*
+###### (*from Gülzau & Mau 2021a: 30-31*)
 
 The data on border infrastructures were collected between April 2018 and October
 2019. Our starting point was the “Direct Contiguity 3.2” data from the
 Correlates of War Project that we used to identify all contiguous land borders
-between nation states ($N_{country}=158$/$N_{border}=630$; Stinnett et al. 2002).[^1] 
+between nation states ($N_{country}=158$, $N_{border}=630$; Stinnett et al. 2002).[^1] 
 For each country, we created a single document and gathered information on all the
 land borders. In general, we relied on visual cues and additional evidence
 from newspapers and digital sources. We looked for case studies in scientific
@@ -56,8 +57,9 @@ Maps API. In some cases, the image quality was too low, forcing us to use
 alternative services such as Bing Maps. In addition to the visual information
 included in satellite imagery, images of border posts were added where possible.
 Lastly, we compared and enriched our coding with existing studies on
-fortified borders (Avdan 2019; Hassner and Wittenberg 2015; Carter and Poast
-2017; Jones 2012; Jellissen and Gottheil 2013).
+fortified borders (Avdan 2019; Carter and Poast 2017; Hassner and Wittenberg 2015; 
+Jellissen and Gottheil 2013; Jones 2012; Linnell et al. 2016).[^2] Figure 2 
+illustrates our coding approach. 
 
 ```{r typology_diagram, eval = TRUE, echo = FALSE, fig.cap = "*Figure 2. Coding approach*"}
 grViz(" 
@@ -94,9 +96,24 @@ nodeD->nodeF [label=' Yes', fontsize =12];
 }")
 ```
 
+In particular, we distinguish borders that are fortified (e.g. fences, walls, 
+barbed-wire, and landmines) from more open border lines. The fortified borders 
+are then coded according to the extent of border fortifications. States with 
+*fortified borders* install obstacles that are meant to prevent unauthorized 
+mobility along the total length of a border line, while states with *barrier borders*
+use physical barriers along specific locations that make it difficult to avoid 
+inspections. The remaining categories differ by the use of designated checkpoints. 
+*Checkpoint borders* are characterized by border posts at major border crossing 
+points with the purpose of stopping and controlling travelers. In contrast, states
+that have landmark borders and no-man's-land borders are not relying border posts
+to monitor cross-border mobility. However, in the case of *landmark borders*, 
+states have agreed to abolish regular controls in order to boost the cross-border
+flows of goods and people, while *no-man's-land borders* are often found in remote 
+regions such as deserts or jungles, which are difficult to access by state agents.
+
 We followed a dyadic conceptualization of international borders by measuring
-the infrastructure on each side of a mutual border line. Accordingly, a
-shared border line that creates a “state couple” (Vallet and David 2014a) is
+the infrastructure on each side of a mutual border line. Accordingly, a shared 
+border line that creates a “state couple” (Vallet and David 2014) is 
 separated into two distinct observations. In this way, we account for borders
 that are managed cooperatively as “bi-national institutions” (Longo 2017, 2)
 and for borders that are places of conflict, which might be the case when incompatible
@@ -107,6 +124,18 @@ checkpoints. In addition, a dyadic approach enables us to include measurements
 that capture the relationship between bordering countries such as differences
 in the economic output or political system.
 
+Using the case of the border between Turkmenistan and Uzbekistan, figure 3 gives
+an example of information that was used to classify borders. The respective border
+is coded as a *fortified border* because existing data sets and policy reports 
+indicate that large stretches of the border are equipped with fences. Using 
+satellite images, the existence of a border fence was confirmed. 
+
+##### Example: Turkmenistan - Uzbekistan
+
+```{r dossier_fig, eval = TRUE, echo = FALSE, fig.cap = "*Figure 3. Example: Turkmenistan-Uzbekistan*", dpi = 300}
+grid.raster(readTIFF(here("figure", "Fig 3 - Example TKM-UZB.tif")))
+```
+
 The typology enables us to map border infrastructures on a global scale,
 addressing questions regarding the worldwide distribution of physical markers.
 Nevertheless, our typology is not without limitations. First, borders and
@@ -116,7 +145,7 @@ the origin of each checkpoint. A case in point concerns African borders that
 were drawn by colonial powers during the scramble for the continent and
 securing colonial exploitation. Even today, the colonial past fuels border conflicts
 and several border fences have been inherited from this past (Gülzau
-and Mau 2021). Second, states maintain multiple border crossing points that
+and Mau 2021b). Second, states maintain multiple border crossing points that
 do not necessarily have the same material infrastructure along the whole border
 line. Our measurement uses the highest level of border infrastructure at
 a specific border line to characterize its entirety. For example, the Kenyan
@@ -132,14 +161,53 @@ Homeland Security, Janet Napolitano, who questioned the efficiency of border
 walls saying “You show me a 50-foot wall and I’ll show you a 51-foot ladder
 at the border” (Lacey 2011). 
 
-##### Example: Turkmenistan - Uzbekistan
+### Variables
 
-```{r dossier_fig, eval = TRUE, echo = FALSE, fig.cap = "*Figure 3. Example: Turkmenistan-Uzbekistan*", dpi = 300}
-grid::grid.raster(tiff::readTIFF(here::here("figure", "Fig 3 - Example TKM-UZB.tif")))
+```{r load_data, eval = TRUE, echo = FALSE}
+border.df <- import(here("data", "border-infrastructure-data.rds"))
+
+tibble(
+  Variables = colnames(border.df),
+  Description = get_label(border.df),
+  Labels = get_labels(border.df, values = "p")
+  ) %>%
+  mutate(Labels = ifelse(lengths(Labels) > 5, "", Labels)) %>%
+  kbl() %>%
+  kable_styling()
 ```
+
+### Bibliography
+
+Avdan, N. (2019). *Visas and Walls. Border Security in the Age of Terrorism*. Philadelphia: University of Pennsylvania Press.
+
+Carter, D. B., & Poast, P. (2017). Why Do States Build Walls? Political Economy, Security, and Border Stability. *Journal of Conflict Resolution, 61*(2), 239-270. 
+
+Galvin, M. (2018). Combating Terrorism on the Somalian Border: The Improbable Kenyan Dream? *Global Challenges*(4). 
+
+Gülzau, F., & Mau, S. (2021a). Walls, Barriers, Checkpoints, Landmarks, and "No-Man's-Land." A Quantitative Typology of Border Control Infrastructure. *Historical Social Research, 46*(3), 23-48. doi:10.12759/hsr.46.2021.3.23-48
+
+Gülzau, F., & Mau, S. (2021b). Walls, Barriers, Checkpoints, No-man's-land. A Typology of Border Infrastructure on the African Continent. *Comparativ. Zeitschrift für Globalgeschichte und vergleichende Gesellschaftsforschung, 31*(3/4), 411-438. doi:10.26014/j.comp.2021.03-04.07
+
+Hassner, R. E., & Wittenberg, J. (2015). Barriers to Entry. Who Builds Fortified Boundaries and Why? *International Security, 40*(1), 157-190. doi:10.1162/ISEC_a_00206
+
+Jellissen, S. M., & Gottheil, F. M. (2013). On the utility of security fences along international borders. *Defense & Security Analysis, 29*(4), 266-279. doi:10.1080/14751798.2013.842707
+
+Jones, R. (2012). *Border Walls: Security and the War on Terror in the United States, India, and Israel*. London: Zed Books.
+
+Lacey, M. (2011, July 19, 2011). Arizona Officials, Fed Up With U.S. Efforts, Seek Donations to Build Border Fence. *The New York Times*. Retrieved from https://www.nytimes.com/2011/07/20/us/20border.html
+
+Linnell, J. D. C., Trouwborst, A., Boitani, L., Kaczensky, P., Huber, D., Reljic, S., . . . Breitenmoser, U. (2016). Border Security Fencing and Wildlife: The End of the Transboundary Paradigm in Eurasia? *PLOS Biology, 14*(6), e1002483. doi:10.1371/journal.pbio.1002483
+
+Longo, M. (2017). *The Politics of Borders: Sovereignty, Security, and the Citizen after 9/11*. Cambridge: Cambridge University Press.
+
+Stinnett, D. M., Tir, J., Diehl, P. F., Schafer, P., & Gochman, C. (2002). The Correlates of War (Cow) Project Direct Contiguity Data, Version 3.0. *Conflict Management and Peace Science, 19*(2), 59-67. doi:10.1177/073889420201900203
+
+Vallet, E., & David, C.-P. (2014). Good Fences for Good Neighbours? States, Couples and Walls. In B. Vassort-Rousset (Ed.), *Building Sustainable Couples in International Relations: A Strategy Towards Peaceful Cooperation* (pp. 66-87). London: Palgrave Macmillan UK.
 
 [^1]: The COW dataset was adjusted by adding the border dyad between Nigeria and 
 Chad, which became a land border due to the progressing aridification of Lake Chad.
 In addition, two erroneous entries were corrected (United Arab Emirates-Qatar, and
 Myanmar-Pakistan). Lastly, we excluded French overseas territories such as French 
 Guyana. 
+
+[^2]: The image database is available upon request. 
