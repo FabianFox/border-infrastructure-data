@@ -3,6 +3,7 @@ data/*.xlsx
 data/*.rds
 data/*.dta
 data/*.sav
+data/*.csv
 
 # Ignore figures
 figure/
