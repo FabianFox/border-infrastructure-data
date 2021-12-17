@@ -1,7 +1,7 @@
 ---
 title: "Border Infrastructure Data"
 author: "Gülzau, Fabian"
-date: "`r format(Sys.time(), '%d/%m/%y')`"
+date: "`r paste('Last update:', format(Sys.time(), '%d/%m/%y'))`"
 knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding, output_dir = here::here("text")) })
 output: html_document
@@ -71,7 +71,7 @@ rankdir = TB;
 node [shape = box]
 nodeA [label = 'Border\nbarrier'];
 nodeB [label = 'Border\ncheckpoint'];
-nodeC [label = 'At specific\npoints only?'];
+nodeC [label = 'Only at specific points'];
 nodeD [label = 'Dismantling by\nagreement'];
 
 {
@@ -97,7 +97,7 @@ nodeD->nodeF [label=' Yes', fontsize =12];
 ```
 
 In particular, we distinguish borders that are fortified (e.g. fences, walls, 
-barbed-wire, and landmines) from more open border lines. The fortified borders 
+barbed-wire, and landmines) from more open border regimes. The fortified borders 
 are then coded according to the extent of border fortifications. States with 
 *fortified borders* install obstacles that are meant to prevent unauthorized 
 mobility along the total length of a border line, while states with *barrier borders*
@@ -105,7 +105,7 @@ use physical barriers along specific locations that make it difficult to avoid
 inspections. The remaining categories differ by the use of designated checkpoints. 
 *Checkpoint borders* are characterized by border posts at major border crossing 
 points with the purpose of stopping and controlling travelers. In contrast, states
-that have landmark borders and no-man's-land borders are not relying border posts
+that have landmark borders and no-man's-land borders are not relying on border posts
 to monitor cross-border mobility. However, in the case of *landmark borders*, 
 states have agreed to abolish regular controls in order to boost the cross-border
 flows of goods and people, while *no-man's-land borders* are often found in remote 
@@ -163,7 +163,11 @@ at the border” (Lacey 2011).
 
 ### Variables
 
-```{r load_data, eval = TRUE, echo = FALSE}
+The border infrastructure data set provides the following variables, which can be 
+used to investigate border architecture at a global scale (see Table 1). The data 
+also enables the replication of core findings. 
+
+```{r load_data, eval = TRUE, echo = FALSE, fig.cap = "*Table 1. Variables: Border infrastructure data*"}
 border.df <- import(here("data", "border-infrastructure-data.rds"))
 
 tibble(
