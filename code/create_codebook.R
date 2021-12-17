@@ -155,5 +155,5 @@ metadata(bid.df)$spatialCoverage <- "Global"
 
 # Export
 ### ------------------------------------------------------------------------ ###
-list(".rds", ".dta", ".sav") %>%
+list(".rds", ".dta", ".sav", ".csv") %>%
   walk(~export(bid.df, file = str_c("./data/border-infrastructure-data", .x)))
