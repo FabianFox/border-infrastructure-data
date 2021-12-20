@@ -10,6 +10,7 @@ figure/
 
 # Ignore .html in text folder
 text/*.html
+text/*.docx
 
 # History files
 .Rhistory
