@@ -87,7 +87,7 @@ var_label(bid.df$state2) <- "Affected state (iso3c)"
 
 # typology
 var_label(bid.df$typology) <- "Border typology"
-val_labels(bid.df$typology) <- c("No-man's land Border" = 1, "Landmark Border" = 2,
+val_labels(bid.df$typology) <- c("No-man's-land Border" = 1, "Landmark Border" = 2,
                                 "Checkpoint Border" = 3, "Barrier Border" = 4, 
                                 "Fortified Border" = 5)
 
