@@ -6,6 +6,7 @@ knit: (function(inputFile, encoding) {
   rmarkdown::render(inputFile, encoding = encoding, output_dir = here::here("text")) })
 output: html_document
 math: true
+always_allow_html: true
 ---
 
 ```{r setup, include = FALSE}
