@@ -1,15 +1,10 @@
 # Ignore excel
-data/*.xlsx
-data/*.rds
-data/*.dta
-data/*.sav
-data/*.csv
+data/border-infrastructure-data-raw.xlsx
 
 # Ignore figures
 figure/
 
 # Ignore .html in text folder
-text/*.html
 text/*.docx
 
 # History files
