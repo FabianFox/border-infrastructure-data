@@ -1,7 +1,7 @@
 # border-infrastructure-data
 
-The data was collected as part of the research project The Borders of the World: 
-[Processes of De- and Rebordering in a Global Perspective](https://www.sfb1265.de/en/subprojects/the-borders-of-the-world-processes-of-de-and-rebordering-in-a-global-perspective/). 
+The data was collected as part of the research project [The Borders of the World: 
+Processes of De- and Rebordering in a Global Perspective](https://www.sfb1265.de/en/subprojects/the-borders-of-the-world-processes-of-de-and-rebordering-in-a-global-perspective/) at the SFB1265 'Re-Figuration of Spaces'. 
 
 For more details on the dataset, please consult the following article:
 
