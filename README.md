@@ -5,7 +5,6 @@ The data was collected as part of the research project The Borders of the World:
 
 For more details on the dataset, please consult the following article:
 
-- [Gülzau, F., & Mau, S. (2021a). Walls, Barriers, Checkpoints, Landmarks, and “No-Man’s-Land.” A Quantitative Typology of Border Control Infrastructure. Historical Social Research, 46(3), 23-48. doi:10.12759/hsr.46.2021.3.23-48](https://www.sowi.hu-berlin.de/de/lehrbereiche/makro/News/hsr_46_2021_3_guelzau_mau_border-control-infrastructure.pdf)
+- [Gülzau, F., & Mau, S. (2021). Walls, Barriers, Checkpoints, Landmarks, and “No-Man’s-Land.” A Quantitative Typology of Border Control Infrastructure. Historical Social Research, 46(3), 23-48. doi:10.12759/hsr.46.2021.3.23-48](https://www.sowi.hu-berlin.de/de/lehrbereiche/makro/News/hsr_46_2021_3_guelzau_mau_border-control-infrastructure.pdf)
 
-In addition, we provide a brief codebook. The dataset is available in different
-formats in the folder `data`. 
+In addition, we provide a brief [codebook](https://htmlpreview.github.io/?https://github.com/FabianFox/border-infrastructure-data/blob/main/text/description_border-infrastructure-data.html). The dataset is available in different formats in the folder `data`. 
