@@ -3,11 +3,11 @@
 # Load/install packages
 ### ------------------------------------------------------------------------ ###
 if(!require("xfun")) install.packages("xfun")
-pkg_attach2("tidyverse", "DiagrammeR")
+pkg_attach2("tidyverse", "DiagrammeR", "DiagrammeRsvg", "rsvg")
 
 # Load data
 ### ------------------------------------------------------------------------ ###
-grViz(" 
+logic.fig <- grViz(" 
 digraph stakeholders {
 
 graph [overlap = true, fontsize = 10, fontname = Montserrat]
@@ -16,7 +16,7 @@ rankdir = TB;
 node [shape = box]
 nodeA [label = 'Border\nbarrier'];
 nodeB [label = 'Border\ncheckpoint'];
-nodeC [label = 'At specific\npoints only?'];
+nodeC [label = 'Only at specific points'];
 nodeD [label = 'Dismantling by\nagreement'];
 
 {
@@ -30,12 +30,19 @@ nodeI [label = 'Fortified\nborder'];
 }
 
 nodeA->nodeB [label=' No', fontsize = 12];
-nodeA->nodeC [label=' Yes', fontsize =12];
+nodeA->nodeC [label=' Yes', fontsize = 12];
 nodeB->nodeD [label=' No', fontsize = 12];
-nodeB->nodeG [label=' Yes', fontsize =12];
-nodeC->nodeH [label=' Yes', fontsize =12];
+nodeB->nodeG [label=' Yes', fontsize = 12];
+nodeC->nodeH [label=' Yes', fontsize = 12];
 nodeC->nodeI [label=' No', fontsize = 12];
 nodeD->nodeE [label=' No', fontsize = 12];
-nodeD->nodeF [label=' Yes', fontsize =12];
+nodeD->nodeF [label=' Yes', fontsize = 12];
 
 }")
+
+# Export
+### ------------------------------------------------------------------------ ### 
+logic.fig %>%
+  export_svg() %>%
+  charToRaw() %>% 
+  rsvg_pdf("./figure/typology_logic.svg")
